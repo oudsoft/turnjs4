@@ -9,8 +9,11 @@ var app = express();
 /**
  * Express Validator Middleware for Form Validation
  */
-var expressValidator = require('express-validator');
-app.use(expressValidator());
+
+const { check, validationResult } = require('express-validator');
+/* Fixed expressValidator By
+https://stackoverflow.com/questions/56733975/express-validator-error-expressvalidator-is-not-a-function
+*/
 
 
 /**
@@ -98,3 +101,8 @@ const server = app.listen(7328, "localhost", function () {
     console.log(colors.green(`Server running at ${host}:${port}`));
 })
 
+/*
+Dont use port 80, run on other port like 8080 and redirect 80 to that port with this command
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+https://stackoverflow.com/questions/44911171/running-node-app-via-pm2-on-port-80
+*/
