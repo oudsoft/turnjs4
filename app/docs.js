@@ -10,6 +10,9 @@ const app = express();
 
 const parentDir = path.normalize(__dirname + "/..");
 
+app.use("/extras", express.static(parentDir + "/extras"));
+app.use("/lib", express.static(parentDir + "/lib"));
+
 app.use("/css", express.static(parentDir + "/samples/docs/css"));
 app.use("/js", express.static(parentDir + "/samples/docs/js"));
 app.use("/pics", express.static(parentDir + "/samples/docs/pics"));

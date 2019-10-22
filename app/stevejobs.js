@@ -15,6 +15,9 @@ const publicVapidKey = 'BLR1KlwGuN0G6p9dGk7dAXXQyntqZzZO0LKcPsh2MNsd79DBcOAR4EDH
 const privateVapidKey = '58J6voJuyaaZCePGauRKqFmsHIOu-2JTMrpXgFBb2Ks';
 webPush.setVapidDetails('mailto:test@example.com', publicVapidKey, privateVapidKey);
 
+app.use("/extras", express.static(parentDir + "/extras"));
+app.use("/lib", express.static(parentDir + "/lib"));
+
 app.use("/", express.static(parentDir + "/samples"));
 app.use("/css", express.static(parentDir + "/samples/steve-jobs/css"));
 app.use("/js", express.static(parentDir + "/samples/steve-jobs/js"));
