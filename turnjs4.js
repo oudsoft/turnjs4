@@ -79,10 +79,6 @@ app.use(session({
 }))
 app.use(flash());
 
-
-app.use("/extras", express.static(__dirname + "/extras"));
-app.use("/lib", express.static(__dirname + "/lib"));
-
 //var index = require('./app/index.js');
 var basic = require('./app/basic.js');
 var docs = require('./app/docs.js');
