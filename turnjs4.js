@@ -95,7 +95,7 @@ app.use('/basic', basic);
 app.use('/stevejobs', stevejobs);
 app.use('/service', service);
 
-const server = app.listen(7328, "localhost", function () {
+const server = app.listen(7327, "localhost", function () {
     const host = server.address().address;
     const port = server.address().port;
     console.log(colors.green(`Server running at ${host}:${port}`));
