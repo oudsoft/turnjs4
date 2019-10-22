@@ -1,0 +1,33 @@
+{
+  "name": "turnjs4",
+  "version": "1.0.0",
+  "description": "The Book",
+  "main": "turnjs4.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-flash": "0.0.2",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.2.0",
+    "method-override": "^3.0.0",
+    "request-promise": "^4.2.4",
+    "web-push": "^3.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oudsoft/turnjs4.git"
+  },
+  "author": "oudsoft",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oudsoft/turnjs4/issues"
+  },
+  "homepage": "https://github.com/oudsoft/turnjs4#readme"
+}
