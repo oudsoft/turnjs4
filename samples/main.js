@@ -77,3 +77,19 @@
       },
     });
   }
+
+  async function doPushNotification(username, msg) {
+    const subscription = await swreg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
+    });
+
+    await fetch('/turnjs4/service/messages', {
+      method: 'POST',
+      body: {username: username, msg: msg},
+      headers: {
+        'Content-Type': 'application/json',
+        'subscription': JSON.stringify(subscription)
+      },
+    });
+  }

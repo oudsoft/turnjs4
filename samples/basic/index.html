@@ -85,6 +85,7 @@ yepnope({
 <script type="text/javascript">
 	$.chat({
 		registerNewRoom: doRegisterNewRoom,
+		sendMessage: doSendMessage,
 		getURL: '../service/messages',
 		postURL: '../service/messages',
 	});
@@ -92,14 +93,28 @@ yepnope({
 	function doRegisterNewRoom(username){
 		return new Promise((resolve, reject) => {
 			let url = '/turnjs4/service/registernewroom';
-			$.post(url, {username: username}, function(data){
-				resolve(data);
+			$.post(url, {username: username}, function(code){
+				resolve(code);
 			}).fail(function(error) { 
 				console.log(JSON.stringify(error));
 				reject(error); 
 			});
-
 		})
+	}
+
+	function doSendMessage(event){
+		return new Promise((resolve, reject) => {
+			event.preventDefault();
+			let username = event.data.name,
+			let msg = $.chat.getInputMessage();
+			let url = '/turnjs4/service/registernewroom';
+			$.post(url, {username: username, msg: msg}, function(code){
+				resolve(code);
+			}).fail(function(error) { 
+				console.log(JSON.stringify(error));
+				reject(error); 
+			});
+		});
 	}
 </script>
 <script type="text/javascript">

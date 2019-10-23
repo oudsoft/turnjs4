@@ -35,19 +35,6 @@ app.post('/registernewroom', (req, res) => {
 	console.log(JSON.stringify(req.body));
 });
 
-app.post('/subscribe', (req, res) => {
-	console.log(req.session.id); // => WQ8JaxI5nGAgyXM2IT466_zLm_oRGsTa
-	console.log(JSON.stringify(req.body)); // => {"endpoint":"https://fcm.googleapis.com/fcm/send/e8eoejqPMQ8:APA91bFifgREW-rZIfeiq0LA-vcPhcAzzcg6JPzoDIo5-xttjs6XbBRJanHkZnlOkd9_86Ew6xM3YXwARRz974H2ecuB72LZ74LdcrNd2LeqZ6po_H_2xWc7ENzq3TNVaY_ykjYbY_5J","expirationTime":null,"keys":{"p256dh":"BH1-84jK4GWmI5BGzgkjeFH53zOEdfD4fksYcmJYwfsjYVEZPpazsjenfFcc6u9DaxhXQD2K77Of3yKfKwcbNxQ","auth":"6a6P9keTMY794bH0PIOzxA"}}
-	const subscription = req.body
-
-	res.status(201).json({});
-
-	const payload = JSON.stringify({
-		title: 'Push notifications with Service Workers',
-	});
-
-	webPush.sendNotification(subscription, payload).catch(error => console.error(error));
-});
 
 app.get('/messages', (req, res) => {
 	console.log(req.session.id); // => WQ8JaxI5nGAgyXM2IT466_zLm_oRGsTa
@@ -64,6 +51,23 @@ app.get('/messages', (req, res) => {
 });
 
 app.post('/messages', (req, res) => {
+	console.log(JSON.stringify(req.body))
+	console.log(req.session.id); // => WQ8JaxI5nGAgyXM2IT466_zLm_oRGsTa
+	console.log(JSON.stringify(req.headers.subscription)); // => {"endpoint":"https://fcm.googleapis.com/fcm/send/e8eoejqPMQ8:APA91bFifgREW-rZIfeiq0LA-vcPhcAzzcg6JPzoDIo5-xttjs6XbBRJanHkZnlOkd9_86Ew6xM3YXwARRz974H2ecuB72LZ74LdcrNd2LeqZ6po_H_2xWc7ENzq3TNVaY_ykjYbY_5J","expirationTime":null,"keys":{"p256dh":"BH1-84jK4GWmI5BGzgkjeFH53zOEdfD4fksYcmJYwfsjYVEZPpazsjenfFcc6u9DaxhXQD2K77Of3yKfKwcbNxQ","auth":"6a6P9keTMY794bH0PIOzxA"}}
+	const subscription = req.headers.subscription;
+
+	res.status(201).json({});
+
+	const payload = JSON.stringify({
+		title: req.session.id,
+		username: req.body.username,
+		msg: req.body.msg
+	});
+
+	webPush.sendNotification(subscription, payload).catch(error => console.error(error));
+});
+
+app.post('/subscribe', (req, res) => {
 	console.log(req.session.id); // => WQ8JaxI5nGAgyXM2IT466_zLm_oRGsTa
 	console.log(JSON.stringify(req.body)); // => {"endpoint":"https://fcm.googleapis.com/fcm/send/e8eoejqPMQ8:APA91bFifgREW-rZIfeiq0LA-vcPhcAzzcg6JPzoDIo5-xttjs6XbBRJanHkZnlOkd9_86Ew6xM3YXwARRz974H2ecuB72LZ74LdcrNd2LeqZ6po_H_2xWc7ENzq3TNVaY_ykjYbY_5J","expirationTime":null,"keys":{"p256dh":"BH1-84jK4GWmI5BGzgkjeFH53zOEdfD4fksYcmJYwfsjYVEZPpazsjenfFcc6u9DaxhXQD2K77Of3yKfKwcbNxQ","auth":"6a6P9keTMY794bH0PIOzxA"}}
 	const subscription = req.body
