@@ -109,10 +109,15 @@ yepnope({
 	function doSendMessage(event){
 		return new Promise((resolve, reject) => {
 			event.preventDefault();
+	    const subscription = swreg.pushManager.subscribe({
+	      userVisibleOnly: true,
+	      applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
+	    });
 			let username = event.data.name;
 			let msg = Chat.getInputMessage();
+			let postData = {subscription: subscription, data: {username: username, msg: msg}};
 			let url = '/turnjs4/service/messages';
-			$.post(url, {username: username, msg: msg}, function(code){
+			$.post(url, postData, function(code){
 				resolve(code);
 			}).fail(function(error) { 
 				console.log(JSON.stringify(error));
