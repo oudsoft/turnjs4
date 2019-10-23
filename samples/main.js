@@ -69,7 +69,7 @@
       applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
     });
 
-    await fetch('/basic/subscribe', {
+    await fetch('/turnjs4/servic/subscribe', {
       method: 'POST',
       body: JSON.stringify(subscription),
       headers: {
