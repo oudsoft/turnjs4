@@ -84,10 +84,26 @@ yepnope({
 <link type="text/css" href="lib/jquery.ui.chatbox.css" rel="stylesheet" />
 <script type="text/javascript">
 	$.chat({
-		
+		registerNewRoom: doRegisterNewRoom;
+		getURL: '../service/messages',
+		postURL: '../service/messages',
 	});
+
+	function doRegisterNewRoom(username){
+		return new Promise((resolve, reject) => {
+			let url = '/turnjs4/service/registernewroom';
+			$.post(url, {username: username}, function(data){
+				resolve(data);
+			}).fail(function(error) { 
+				console.log(JSON.stringify(error));
+				reject(error); 
+			});
+
+		})
+	}
 </script>
 <script type="text/javascript">
+	/*
       $(document).ready(function(){
           var box = null;
           $("input[type='button']").click(function(event, ui) {
@@ -95,16 +111,17 @@ yepnope({
                   box.chatbox("option", "boxManager").toggleBox();
               }
               else {
-                  box = $("#chat_div").chatbox({id:"chat_div", 
-                                                user:{key : "value"},
-                                                title : "test chat",
-                                                messageSent : function(id, user, msg) {
-                                                    $("#log").append(id + " said: " + msg + "<br/>");
-                                                    $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
-                                                }});
+                box = $("#chat_div").chatbox({id:"chat_div", 
+	                user:{key : "value"},
+	                title : "test chat",
+	                messageSent : function(id, user, msg) {
+	                    $("#log").append(id + " said: " + msg + "<br/>");
+	                    $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
+	               }});
               }
           });
       });
+      */
 </script>	
 </body>
 </html>

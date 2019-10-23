@@ -11,6 +11,9 @@ const webPush = require('web-push');
 
 const parentDir = path.normalize(__dirname + "/..");
 
+app.use("/extras", express.static(parentDir + "/extras"));
+app.use("/lib", express.static(parentDir + "/lib"));
+
 app.use("/css", express.static(parentDir + "/samples/basic/css"));
 app.use("/js", express.static(parentDir + "/samples/basic/js"));
 app.use("/pics", express.static(parentDir + "/samples/basic/pics"));
@@ -27,6 +30,10 @@ webPush.setVapidDetails('mailto:test@example.com', publicVapidKey, privateVapidK
 app.get('/', function(req, res) {
 	console.log(JSON.stringify(req.body));
 })
+
+app.post('/registernewroom', (req, res) => {
+	console.log(JSON.stringify(req.body));
+});
 
 app.post('/subscribe', (req, res) => {
 	console.log(req.session.id); // => WQ8JaxI5nGAgyXM2IT466_zLm_oRGsTa
