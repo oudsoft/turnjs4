@@ -7,6 +7,8 @@
 <head>
 <meta name="viewport" content="width = 1050, user-scalable = no" />
 <script type="text/javascript" src="extras/jquery.min.1.7.js"></script>
+<script type="text/javascript" src="extras/jquery-ui-1.8.20.custom.min.js"></script>
+<link type="text/css" rel="stylesheet" href="lib/jquery-ui-1.8.2.custom.css" media="screen" />
 <script type="text/javascript" src="extras/modernizr.2.5.3.min.js"></script>
 </head>
 <body>
@@ -72,16 +74,37 @@ yepnope({
 });
 
 </script>
-
+<div id="chat_div"></div>
 <div class="buttons">
-      <button class="trigger-push">Trigger Push Notification</button>
+  <button class="trigger-push">Trigger Push Notification</button>
 </div>
 <script src="samples/main.js"></script>
 <script src="lib/chat.js"></script>
+<script src="lib/jquery.ui.chatbox.js"></script>
+<link type="text/css" href="lib/jquery.ui.chatbox.css" rel="stylesheet" />
 <script type="text/javascript">
 	$.chat({
 		
 	});
 </script>
+<script type="text/javascript">
+      $(document).ready(function(){
+          var box = null;
+          $("input[type='button']").click(function(event, ui) {
+              if(box) {
+                  box.chatbox("option", "boxManager").toggleBox();
+              }
+              else {
+                  box = $("#chat_div").chatbox({id:"chat_div", 
+                                                user:{key : "value"},
+                                                title : "test chat",
+                                                messageSent : function(id, user, msg) {
+                                                    $("#log").append(id + " said: " + msg + "<br/>");
+                                                    $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
+                                                }});
+              }
+          });
+      });
+</script>	
 </body>
 </html>
