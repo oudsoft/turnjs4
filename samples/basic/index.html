@@ -91,6 +91,7 @@ yepnope({
 	});
 
 	function doRegisterNewRoom(username){
+		console.log('ok');
 		return new Promise((resolve, reject) => {
 			let url = '/turnjs4/service/registernewroom';
 			$.post(url, {username: username}, function(code){
