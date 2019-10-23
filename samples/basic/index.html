@@ -112,10 +112,10 @@ yepnope({
 	      userVisibleOnly: true,
 	      applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
 	    });
-			console.log('subscription: ' + subscription);	    
+			console.log('subscription: ' + JSON.stringify(subscription));	    
 			let username = event.data.name;
 			let msg = Chat.getInputMessage();
-			let postData = {subscription: subscription, data: {username: username, msg: msg}};
+			let postData = {subscription: JSON.stringify(subscription), data: {username: username, msg: msg}};
 			let url = '/turnjs4/service/messages';
 			$.post(url, postData, function(code){
 				resolve(code);
