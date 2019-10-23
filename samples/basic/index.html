@@ -85,7 +85,7 @@ yepnope({
 <script type="text/javascript">
 	$.chat({
 		welcome: 'สวัสดี ',
-		welcomeMsg: ' ทีมงานฝ่ายดูแลลูกค้ากำลังเตรียมให้บริการ โปรดรอสักครู่...',
+		welcomeMsg: ' ทีมงานฝ่ายดูแลลูกค้ากำลังเตรียมให้บริการ โปรดรอสักครู่...\nช่วงระหว่างรอ คุณสามารถพิมพ์ข้อความแล้วส่งมาหาเราได้ทันที',
 		registerNewRoom: doRegisterNewRoom,
 		sendMessage: doSendMessage,
 		getURL: '../service/messages',
@@ -110,7 +110,7 @@ yepnope({
 		return new Promise((resolve, reject) => {
 			event.preventDefault();
 			let username = event.data.name;
-			let msg = $.chat.getInputMessage();
+			let msg = Chat.getInputMessage();
 			let url = '/turnjs4/service/messages';
 			$.post(url, {username: username, msg: msg}, function(code){
 				resolve(code);
