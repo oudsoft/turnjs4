@@ -105,8 +105,8 @@ yepnope({
 	function doSendMessage(event){
 		return new Promise((resolve, reject) => {
 			event.preventDefault();
-			let username = event.data.name,
-			let msg = Chat.getInputMessage();
+			let username = event.data.name;
+			let msg = $.chat.getInputMessage();
 			let url = '/turnjs4/service/registernewroom';
 			$.post(url, {username: username, msg: msg}, function(code){
 				resolve(code);
