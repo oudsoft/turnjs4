@@ -54,7 +54,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-      navigator.serviceWorker.register('sw.js').then( async reg => {
+      navigator.serviceWorker.register('samples/sw.js').then( async reg => {
         swreg = reg;
         console.log(`Registration:`, reg);
       });
