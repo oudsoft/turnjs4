@@ -19,7 +19,7 @@ app.use("/js", express.static(parentDir + "/samples/docs/js"));
 app.use("/pics", express.static(parentDir + "/samples/docs/pics"));
 app.use("/pages", express.static(parentDir + "/samples/docs/pages"));
 
-app.get('/', function(req, res) {
+app.get('/view', function(req, res) {
 	res.sendFile( parentDir + '/samples/docs/index.html');
 })
 
