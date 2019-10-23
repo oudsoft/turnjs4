@@ -14,7 +14,7 @@ const parentDir = path.normalize(__dirname + "/..");
 app.use("/extras", express.static(parentDir + "/extras"));
 app.use("/lib", express.static(parentDir + "/lib"));
 
-app.use("/", express.static(parentDir + "/samples"));
+app.use("/samples", express.static(parentDir + "/samples"));
 app.use("/css", express.static(parentDir + "/samples/steve-jobs/css"));
 app.use("/js", express.static(parentDir + "/samples/steve-jobs/js"));
 app.use("/pics", express.static(parentDir + "/samples/steve-jobs/pics"));
