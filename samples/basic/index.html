@@ -96,7 +96,6 @@ yepnope({
 		return new Promise((resolve, reject) => {
 			let url = '/turnjs4/service/registernewroom';
 			$.post(url, {username: username}, function(code){
-				console.log(code);
 				resolve(code);
 			}).fail(function(error) { 
 				console.log(JSON.stringify(error));
@@ -112,7 +111,6 @@ yepnope({
 	      userVisibleOnly: true,
 	      applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
 	    });
-			console.log('subscription: ' + JSON.stringify(subscription));	    
 			let username = event.data.name;
 			let msg = Chat.getInputMessage();
 			let postData = {subscription: JSON.stringify(subscription), data: {username: username, msg: msg}};
